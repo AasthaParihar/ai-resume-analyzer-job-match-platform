@@ -6,6 +6,14 @@ app = FastAPI()
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
+@app.get("/")
+async def root():
+    return {"ok": True, "service": "ai-service"}
+
+@app.get("/health")
+async def health():
+    return {"ok": True, "service": "ai-service"}
+
 @app.post("/analyze")
 async def analyze(data: dict):
     resume = data["resume"]
